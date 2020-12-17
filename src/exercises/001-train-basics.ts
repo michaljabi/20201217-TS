@@ -28,10 +28,28 @@
  * */
 
 // Przed rozpoczęciem zadania usuń komentarz poniżej (@ts-nocheck)
-// @ts-nocheck
+type StringOrNumber = number | string;
+type Direction = 'up' | 'down';
 
 // Tutaj dopisz implementację moveBy2 na podstawie wywołań poniżej
-function moveBy2() {
+function moveBy2(from: number, to: StringOrNumber, direction: Direction): void | never {
+
+    const start = from;
+    const end = Number(to);
+    if( isNaN(end) ) {
+        throw new Error('param "to" is Not a Number')
+        // return;
+    }
+
+    if(direction === 'up') {
+        for (let x = start; x <= end; x += 2) {
+            console.log(x);
+        }
+    } else if(direction === 'down') {
+        for (let x = end; x >= start; x -= 2) {
+            console.log(x);
+        }
+    }
 }
 
 // to powinny być prawidłowe wywołania:
@@ -39,8 +57,18 @@ moveBy2(10, 20, 'up');
 moveBy2(10, '20', 'down');
 
 // nieprawidłowe wywołania (nie powinny się pokazać dane na konsoli):
-moveBy2(10, 'aqweoiuqwieu', 'down');
-moveBy2(10, NaN, 'down');
+try {
+    moveBy2(10, 'aqweoiuqwieu', 'down');
+} catch (e) {
+    console.log(e.message)
+}
+try {
+    moveBy2(10, NaN, 'down');
+} catch (e) {
+    console.log(e.message)
+}
+
+
 
 // powinno podkreślić - [błąd Typescript]
 // moveBy2(10, NaN, 'diagonal');

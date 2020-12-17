@@ -18,9 +18,16 @@
 
 type Numeric = number;
 
-const seed: number = 100;
+// type Money = number;
+// type Money = {
+//     value: number;
+//     currency: string;
+// };
+
+// const seed: Money = { value: 100, currency: '$' };
+const seed: Numeric = 900;
 const inferred = 100;
-const toCompare: Numeric = 100;
+const toCompare: number = 100;
 
 console.log(toCompare === seed);
 console.log(toCompare === inferred);
@@ -34,6 +41,8 @@ console.log(seed === inferred);
 // TypeScript pozwala nam zrobić Union type
 // Coś może być np. albo number'em albo string'iem:
 type StringOrNumber = number | string;
+
+type StringOrNumberOrBoolean = StringOrNumber | boolean;
 
 // Przykładowo, taki zapis - to błąd (przez istniejące wnioskowanie typów:
 /*
@@ -65,6 +74,8 @@ let performAction: Action = 'open';
 performAction = 'collect';
 performAction = 'pack';
 performAction = 'ship';
+//performAction = 'collect';
+
 // ustawienie nieistniejącej wartości w union - skutkuje błędem:
 // performAction = 'non-existent';
 
