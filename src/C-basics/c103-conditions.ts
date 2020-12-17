@@ -21,9 +21,14 @@
  * {@see https://dorey.github.io/JavaScript-Equality-Table/}
  * */
 
+// console.log('HELLO'.charAt(0))
+
 let numericCondition = 0;
 
+console.log(numericCondition)
+
 if(numericCondition === 1) {
+    console.log('if !')
     console.log('if !')
 } else if (numericCondition){
     console.log('else if !')
@@ -32,11 +37,11 @@ if(numericCondition === 1) {
 }
 
 
-const x = 100;
+const x = 10;
 const higherThen10 = x > 10;
 // conditional (ternary) operator:
 // [!] zawsze spodziewamy się jego ewaluacji do wartości
-const hello = higherThen10 ? 'witaj' : 'żegnaj';
+let hello = higherThen10 ? 'witaj' : 'żegnaj';
 
 switch(hello) {
     case 'witaj':
@@ -112,14 +117,24 @@ function test(isStringOrNumber: string | number | unknown): string {
     return 'unknown type'
 }
 
+// interface MyUser  {
+//     name: string
+// }
+
 // Przykład powyżej zadziała dla typów prostych, co z bardziej złożonymi typami?
 function complexType(isDateOrRegexp: Date | RegExp): void {
+
     if(isDateOrRegexp instanceof Date) {
         // logika w przypadku gdy obiekt to na pewno Data....
+        isDateOrRegexp.getTime();
     }
     if(isDateOrRegexp instanceof RegExp) {
         // logika w przypadku gdy obiekt to na pewno RegExp....
+        isDateOrRegexp.test('1212')
     }
+    // if(isDateOrRegexp instanceof Object) {
+    //     // logika w przypadku gdy obiekt to na pewno RegExp....
+    // }
 }
 
 

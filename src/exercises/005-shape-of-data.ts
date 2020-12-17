@@ -11,14 +11,23 @@
  * - utwórz odpowiednie obiekty i przekaż do `giveFullName` tak aby potwierdzić poprawność działania kodu
  * */
 
-function joiner (strTuple: any): any  {
+interface User {
+    name: string;
+    lastName: string;
+    sex: 'male' | 'female';
+    vipStatus?: boolean;
+}
+
+// function joiner (strTuple: string[]): string  {}
+
+function joiner (strTuple: [string, string]): string  {
     return strTuple[0] + ' ' + strTuple[1];
 }
 
-function giveFullName(myUser: any): any {
-    const fullName: any = myUser.name + ' ' + myUser.lastName;
-    let prefix: any;
-    let suffix: any;
+function giveFullName(myUser: User): string {
+    const fullName: string = myUser.name + ' ' + myUser.lastName;
+    let prefix = '';
+    let suffix = '';
     if(myUser.sex === 'female') {
         prefix = 'Pani';
     } else if(myUser.sex === 'male') {
@@ -27,7 +36,7 @@ function giveFullName(myUser: any): any {
     if(myUser.vipStatus) {
         suffix = ' - the VIP'
     }
-    return prefix + ' ' + fullName + suffix;
+    return joiner([prefix, fullName]) + suffix;
 }
 
 export {};

@@ -28,23 +28,42 @@ const myObject = {};
 const namedObject: {name: string} = {name: 'Michael'};
 
 // Lub z polem które jest opcjonalne:
-let otherNamedObject: {name?: string};
+let otherNamedObject: {name?: string, lastName?: string};
 
 otherNamedObject = {};
 otherNamedObject.name = 'scissors';
+otherNamedObject.lastName = 'scissors';
 
 // Każdy z typów obiektowych może być zdefiniowany:
 type SuperUser = {
     name: string;
     isAdmin: boolean;
     age?: number;
-    checkIsAdmin?(): void;
+    checkIsAdmin?(): string;
 }
+
+// interface SuperUser {
+//     name: string;
+//     isAdmin: boolean;
+//     age?: number;
+//     checkIsAdmin?(): string;
+// }
+
+// interface SuperUser {
+//     sthElse: boolean;
+// }
 
 let myUser: SuperUser;
 
 // Odkomentuj i przypisz nowego user'a:
-// myUser = {};
+myUser = {
+   name: '',
+   isAdmin: true,
+    // po 2015:
+    checkIsAdmin() {
+       return '';
+    }
+};
 
 // Typy obiektowe mogą zwierać sie w sobie:
 type WebPortal = {

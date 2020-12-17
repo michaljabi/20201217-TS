@@ -80,14 +80,19 @@ isItTruthy(0); //?
 
 
 // Funkcje (...i metody) podobnie jak w JavaScript - mogą mieć również parametry domyślne:
-function giveMeWeather(weather = 'widny'): string {
-    return weather
+function giveMeWeather(weather: string | null = 'widny'): string {
+    return String(weather);
 }
 // [!] TS wie że weather może być tylko stringiem
 // giveMeWeather(2323)
 
 // wartość domyślna:
 giveMeWeather(); //?
+giveMeWeather(undefined); //?
+
+
+giveMeWeather(null); //?
+
 
 // wartość ustalona przez argument:
 giveMeWeather('sunny'); //?

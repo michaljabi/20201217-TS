@@ -21,6 +21,8 @@ const sampleScope = 'Hello !';
 {
     const inLexicalScope = 'cannot access outside';
     let theSameForLet = 'Hello let';
+
+    console.log(sampleScope);
 }
 
 // Odkomentuj, aby zobaczyć błąd:

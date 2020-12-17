@@ -10,8 +10,8 @@
  *
  * */
 
-function joiner(joinString: any): any  {
-    return (...strings: any): any => {
+function joiner(joinString: string): any  {
+    return (...strings: string[]): string => {
         return strings.join(joinString);
     };
 }

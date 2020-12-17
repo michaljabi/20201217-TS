@@ -13,8 +13,10 @@
  * któremu przekazujesz callback "click" - w tedy po kliknięciu wykona się Twoja logika.
  */
 
+type MyCallback = (amount: number) => void;
 
-function refund(cashBackFn: (amount: number) => void): void {
+// function refund(cashBackFn: (amount: number) => void): void {
+function refund(cashBackFn: MyCallback): void {
     // Zauważ, że parametr `cashBackFn` - to funkcja.
     // Nie jest ona wywołana, dopóki nie zrobimy...
 

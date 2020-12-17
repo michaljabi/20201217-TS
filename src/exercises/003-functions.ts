@@ -38,12 +38,18 @@
 const JOB_TITLE = 'Senior Specialist'
 const SOCIAL_PACKET = 'Grand premium Sport Card'
 
-// @ts-ignore
-function userOnboarding(name, yearOfExperience, jobTitle, socialPacket) {
-    console.log('awaiting logic...')
+
+function userOnboarding(name: string, yearOfExperience = 5, jobTitle = JOB_TITLE, socialPacket = SOCIAL_PACKET) {
+    console.log(`
+    Witaj ${name},
+    mając ${yearOfExperience} lat doświadczenia.
+    Dostałeś stanowisko: ${jobTitle}
+
+    Przysługuje Ci: ${socialPacket}
+    `)
 }
 
-// @ts-ignore
+
 userOnboarding('Marek')
 userOnboarding('Jacek', 20, 'Manager', 'Medical pack')
 

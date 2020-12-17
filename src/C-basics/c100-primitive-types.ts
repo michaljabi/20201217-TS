@@ -23,7 +23,7 @@ console.log(typeof Number('123'))
 console.log( Boolean('123'))
 console.log(typeof Boolean('123'))
 
-console.log(typeof [])
+console.log((typeof []) === 'object')
 console.log(typeof {})
 console.log(typeof new Date())
 
