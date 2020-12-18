@@ -16,12 +16,15 @@
 type MyCallback = (amount: number) => void;
 
 // function refund(cashBackFn: (amount: number) => void): void {
-function refund(cashBackFn: MyCallback): void {
+function refund(cashBackFn: MyCallback ): void {
     // Zauważ, że parametr `cashBackFn` - to funkcja.
     // Nie jest ona wywołana, dopóki nie zrobimy...
 
     // ...tak:
-    cashBackFn(200);
+    cashBackFn(500);
+    // cashBackFn(500);
+    // cashBackFn(500);
+    // cashBackFn(500);
 
     // To wywołanie robimy z liczbą 200 jest to argument przekazany do funkcji,
     // którą dostaliśmy tutaj.
@@ -31,6 +34,12 @@ function refund(cashBackFn: MyCallback): void {
     // * Może się to zdarzyć po upływie czasu (setTimeout)
     // * Może się to zdarzyć kilka razy !!!
 }
+
+[1, 2, 3, 4].map((n: number) => n * 2); //?
+
+refund(() => {
+    console.log('!');
+})
 
 refund((amount: number) => {
     console.log('#1 collected:', amount);

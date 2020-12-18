@@ -18,9 +18,37 @@
  * - napisz taki właśnie przypadek i obsłuż go w try - catch
  * */
 
-function getVatTaxRateFromServer(calculations: any) {
-    calculations(0.23)
+type VatAmountFn = (vat: number) => void;
+
+function getVatTaxRateFromServer(calculations?: VatAmountFn): void | never {
+    // console.log(calculations);
+
+    // tutaj rzucamy !?
+    // const isAFunction = calculations instanceof Function; // tak się nie uda.
+    if(!(calculations instanceof Function)) {
+        throw new Error('calculations is not a function!');
+    }
+
+    setTimeout(() => {
+        //if(calculations instanceof Function) {
+            calculations(0.23);
+        //}
+        //if(typeof calculations === 'function') {
+            //calculations(0.23);
+        //}
+    }, 3000);
 }
 
+try {
+    getVatTaxRateFromServer()
+} catch (e: unknown) {
+    if(e instanceof Error) {
+        console.log(e.message)
+    }
+}
+
+getVatTaxRateFromServer((vatRate: number) => {
+    console.log(300 + 300 * vatRate)
+})
 
 export {};

@@ -10,11 +10,28 @@
  *
  * */
 
-function joiner(joinString: string): any  {
+type JoiningFn = (...strings: string[]) => string;
+
+interface JoiningFn2 {
+    (...strings: string[]): string;
+}
+// Interface JoiningFn2 może być obiektowy jako funkcja bo:
+console.log(joiner)
+console.log(typeof joiner)
+console.log(joiner instanceof Function);
+console.log(joiner instanceof Object);
+
+// Natomiast inaczej nie da się tego poniżej zrobić (interface nie zadziała)
+type MyString = string;
+
+function joiner(joinString: string): JoiningFn  {
     return (...strings: string[]): string => {
         return strings.join(joinString);
     };
 }
+
+
+
 
 const hyphenJoiner = joiner('-');
 const spaceJoiner = joiner(' ');

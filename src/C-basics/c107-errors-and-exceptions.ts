@@ -11,8 +11,35 @@
  * Warto używać obiektu Error - lub utworzyć własną konstrukcję
  * */
 
+JSON.parse('{"name":"Kasia"}'); //?
 
-function isLowerThan10(num: number | undefined): boolean {
+try {
+    const x = 10;
+     //x = 20;
+    JSON.parse('{"name":"Kasia}');
+
+    // throw new Error('Inny error');
+
+    console.log('I not sure will I fire !?');
+
+} catch (e: unknown) {
+     // console.log(e);
+     // ???? Jeśli to TypeError to zrób A
+     // ??? Jeśli to SyntaxError to zrób B
+    if(e instanceof TypeError) {
+        console.log('Robie A')
+    } else if(e instanceof SyntaxError) {
+        console.log('Robie B')
+    } else if(e instanceof Error) {
+        console.log('Robie C bo to inny Error - nieznany')
+       console.log(e.message);
+    }
+
+} finally {
+    console.log('I WILL ALWAYS FIRE !')
+}
+
+function isLowerThan10(num: number | undefined): boolean | never {
 
     if(typeof num !== 'number') {
         throw new Error(`Podana wartość: ${num} nie jest numeryczna !`)
