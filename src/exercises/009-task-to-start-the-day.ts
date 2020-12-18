@@ -33,11 +33,11 @@ type CashOperationType = 'in' | 'out';
 type CancelableCashOperationType = CashOperationType | 'canceled';
 
 // #1
-interface CashOperation {
+interface CashOperation<TYPE = CashOperationType> {
     id: number;
     title: string;
     date: Date;
-    type: CashOperationType;
+    type: TYPE;
     value: number;
 }
 
@@ -74,13 +74,14 @@ const operationList: CashOperation[] = [firstOperation, secondOperation];
 //
 // const myNewTape: TypedCashOper = { id: 1, type: 'dowolny' }
 
-interface CancelableCashOperation {
-    id: number;
-    title: string;
-    date: Date;
-    type: CancelableCashOperationType;
-    value: number;
-}
+// interface CancelableCashOperation {
+//     id: number;
+//     title: string;
+//     date: Date;
+//     type: CancelableCashOperationType;
+//     value: number;
+// }
+interface CancelableCashOperation extends CashOperation<CancelableCashOperationType> {}
 
 const futureOperationList: CancelableCashOperation[] = [
     { id: 2, date: new Date(), title: 'Wypłata',  value: -200, type: 'canceled' /*, newtype: 'canceled'*/ },

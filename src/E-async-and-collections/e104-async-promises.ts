@@ -31,6 +31,39 @@
  * Ponieważ nie wiemy co zwróci nam obiekt Promise
  * */
 
+function callAjax(cb: Function) {}
+
+callAjax((err: Error, data: any) => {
+      if(err) {
+          return;
+      }
+      console.log('process', data);
+        callAjax((err: Error, data: any) => {
+            if(err) {
+                return;
+            }
+            console.log('process', data);
+            callAjax((err: Error, data: any) => {
+                if(err) {
+                    return;
+                }
+                console.log('process', data);
+                callAjax((err: Error, data: any) => {
+                    if(err) {
+                        return;
+                    }
+                    console.log('process', data);
+                    callAjax((err: Error, data: any) => {
+                        if(err) {
+                            return;
+                        }
+                        console.log('process', data);
+                    })
+                })
+            })
+        })
+})
+
 // Konstrukcja Promise, również jest generyczna:
 const myPromise = new Promise<string>((resolve: (value: string) => void) => {
     resolve('Hello');
@@ -45,9 +78,8 @@ const myStringPromise = new Promise<string>((resolve) => {
 
 // Typ generyczny jest zasadny ponieważ odbierając Promise - również warto wiedzieć
 // Jakiego typu dane ona emituje:
-myStringPromise.then((value: string) => {
-    console.log('Otrzymałem wartość:', value)
-})
+myStringPromise
+    .then(() => {})
 
 // Słowa kluczowe: async / await - obsługa promises
 // async function runLogic() {
@@ -57,13 +89,15 @@ myStringPromise.then((value: string) => {
 // }
 
 // Całość realizacji logiki dla promise wyglądać może na przykład następująco:
-function makeMeAPromise(shouldBeBroken: boolean): Promise<string> {
+
+// Przykład tworzenia generycznej promisy:
+function makeMeAPromise<TYPE>(shouldBeBroken: boolean, data: TYPE): Promise<TYPE> {
    // PROVIDER:
-   return new Promise((resolve, reject) => {
+   return new Promise<TYPE>((resolve, reject) => {
        if(shouldBeBroken) {
            reject(new Error('I am broken by design :('))
        } else {
-           resolve('some string value')
+           resolve(data)
        }
    })
 }
@@ -72,7 +106,7 @@ function makeMeAPromise(shouldBeBroken: boolean): Promise<string> {
 // CONSUMER:
 
 // Zaobserwuj co się stanie jeśli zmienisz true na false:
-const myBrokenPromise = makeMeAPromise(true);
+const myBrokenPromise = makeMeAPromise(true, 'value1');
 myBrokenPromise
     .then((val: string) => {
         console.log('Never happened', val)
@@ -85,3 +119,6 @@ myBrokenPromise
 // Możliwa jest obietnica -
 // Promise które nigdy się nie zrealizuje:
 const iWillNeverMakeADecision = new Promise<never>(() => {});
+
+// iWillNeverMakeADecision.then(() => {})
+// console.dir(iWillNeverMakeADecision)
