@@ -63,12 +63,14 @@ console.log(myMovie.name)
 // Movie [===] OtherMovie
 
 class OtherMovie {
+    public director = 'Kowalsky';
     // skrócona forma zapisu tego co mamy powyżej w Movie !!!
     constructor(public readonly name: string) {}
 }
 
-const myOtherMovie = new OtherMovie('Friends');
+const myOtherMovie: Movie = new OtherMovie('Friends');
 console.log(myOtherMovie.name)
+// console.log(myOtherMovie.director)
 // myOtherMovie.name = 'That 70s show';
 
 

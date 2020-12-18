@@ -16,4 +16,32 @@
      console.log(joiner.joinWords('what', 'is', 'it')  === 'what is it');
  * */
 
+// let sign = '';
+
+class Joiner {
+
+    // private sign: string;
+    //
+    // constructor(sign: string) {
+    //     this.sign = sign;
+    // }
+
+    constructor(private sign: string) {}
+
+    joinWords(...words: string[]): string {
+        return words.join(this.sign);
+    }
+
+    changeSign(sign: string) {
+        this.sign = sign;
+    }
+}
+
+const joiner = new Joiner('-');
+
+// console.log(joiner.sign);
+console.log(joiner.joinWords('this', 'is')  === 'this-is');
+joiner.changeSign(' ');
+console.log(joiner.joinWords('what', 'is', 'it')  === 'what is it');
+
 export {};

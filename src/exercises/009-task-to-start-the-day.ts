@@ -22,3 +22,66 @@
     (nieuwzględniającego tego 3 rodzaju)
 
  */
+// type CashOperation = {
+//     id: number;
+//     title: string;
+//     date: Date;
+//     type: 'in' | 'out'
+// }
+
+type CashOperationType = 'in' | 'out';
+type CancelableCashOperationType = CashOperationType | 'canceled';
+
+// #1
+interface CashOperation {
+    id: number;
+    title: string;
+    date: Date;
+    type: CashOperationType;
+    value: number;
+}
+
+// #2
+const firstOperation: CashOperation = { id: 1, date: new Date(), title: 'Wpłata',  value: 100, type: 'in' };
+const secondOperation: CashOperation = { id: 2, date: new Date(), title: 'Wypłata',  value: -100, type: 'out' };
+
+console.log(firstOperation)
+
+const serialized = JSON.stringify(firstOperation);
+
+console.log(serialized)
+console.log(typeof serialized)
+
+const myOperationBackFromBackend = JSON.parse(serialized);
+
+console.log(myOperationBackFromBackend)
+console.log(typeof myOperationBackFromBackend.date)
+
+myOperationBackFromBackend.date = new Date(myOperationBackFromBackend.date);
+
+console.log(myOperationBackFromBackend)
+
+// #3
+const operationList: CashOperation[] = [firstOperation, secondOperation];
+
+// #4
+// interface CancelableCashOperation extends CashOperation {
+//     // type: CancelableCashOperationType;
+// }
+//
+// type CashOper = {id: number};
+// type TypedCashOper = CashOper & {type: string};
+//
+// const myNewTape: TypedCashOper = { id: 1, type: 'dowolny' }
+
+interface CancelableCashOperation {
+    id: number;
+    title: string;
+    date: Date;
+    type: CancelableCashOperationType;
+    value: number;
+}
+
+const futureOperationList: CancelableCashOperation[] = [
+    { id: 2, date: new Date(), title: 'Wypłata',  value: -200, type: 'canceled' /*, newtype: 'canceled'*/ },
+];
