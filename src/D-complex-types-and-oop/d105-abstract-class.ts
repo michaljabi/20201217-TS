@@ -29,7 +29,7 @@ class Bicycle extends TheThing {}
 // pozostałe mogą mieć własną implementację:
 
 abstract class OtherThing {
-    protected abstract name: string;
+    protected abstract name = '';
 
     abstract hello(): void;
 

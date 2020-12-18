@@ -12,8 +12,11 @@
  *
  * TypeScript pozwala nam na dokładnie określenie jakie typy elementów będą przechowywane w tablicy.
  * */
+// type NumberOrString = number | string;
 
-const myNumbers = [1, 2, 3, 40];
+const myNumbers: Array<number> = [1, 2, 3, 1000];
+// const myNumbers: Array<number | string> = ['A', 'D', 1000];
+const myNumbers2: (number | string)[] = ['A', 'D', 1000];
 
 // Poniższy zapis nie zadziała
 // Generalnie TypeScript już nas do tego przyzwyczaił - wnioskowanie typów!
@@ -35,6 +38,7 @@ const twoKindsOfTypes: (string | number)[] = [];
 
 twoKindsOfTypes.push(1123);
 twoKindsOfTypes.push('23.2223');
+// twoKindsOfTypes.push(true);
 
 console.log(twoKindsOfTypes);
 // Wyjmowanie elementów z tablicy:

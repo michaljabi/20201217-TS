@@ -29,6 +29,7 @@ class Mouse extends Hardware {
 
 function checkBatteryLevel(pieceOf: Hardware) {
     console.log('battery level is: ', pieceOf.batteryLevel());
+    // console.log('battery level is: ', pieceOf.keyClicked);
 }
 
 // Poprawny kod dzięki istnieniu tzw. kowariancji

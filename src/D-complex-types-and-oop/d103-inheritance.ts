@@ -19,12 +19,22 @@
 // Klasa bazowa
 class Animal {
 
+    static field = 124;
     name: string;
+    breed?: string;
 
     constructor(name: string) {
         this.name = name;
     }
+
+    static make(): void {
+
+    }
 }
+
+const animal = new Animal('cat');
+Animal.make(); //?
+Animal.field; //?
 
 // Prosty przykład dziedziczenia:
 class Mammal extends Animal {
@@ -39,6 +49,19 @@ class Reptile extends Animal {
         super('Snake');
     }
 }
+
+function makeAnAnimal<A extends Animal>(myAnimal: A) {
+    console.log(myAnimal.name);
+    console.log(myAnimal.breed);
+    // console.log(myAnimal.ishih);
+}
+makeAnAnimal(new Reptile())
+makeAnAnimal(new Animal('zwierze'))
+makeAnAnimal(new Mammal('ssak'))
+
+// makeAnAnimal('236786')
+// makeAnAnimal(123213)
+// makeAnAnimal(true)
 
 // W TypeScript można dziedziczyć tylko po 1 klasie bazowej,
 // Oznacza to, że gdybyśmy mieli np. 2 klasę Mechanical i chcieli zrobić Mechanical Animal - nie jest to możliwe

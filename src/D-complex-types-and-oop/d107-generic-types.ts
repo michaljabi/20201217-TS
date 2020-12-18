@@ -25,6 +25,7 @@ const mySampleArray: Array<string | number> = [];
 
 mySampleArray.push(1120);
 mySampleArray.push('23');
+// mySampleArray.push()
 // błąd (Array zawiera albo string albo number):
 // mySampleArray.push(true);
 
@@ -32,6 +33,10 @@ mySampleArray.push('23');
 let undefinedArray2: string[];
 const myOtherArray: (string | number)[] = [];
 
+const myOtherSet = new Set<string | number>([1, 2, 3]);
+
+myOtherSet.add('27647652.123677')
+// myOtherSet.add()
 
 // w programowaniu istnieją konstrukcje które przechowują np. kolekcje elementów
 // wszystkie one nie wiedzą w momencie deklarowania - jakiego typu będą to elementy
@@ -62,7 +67,10 @@ freestyleSet.add(true);
 
 // Całe piękno typów generycznych, polega na możliwości tworzenia własnych.
 // Możemy przykładowo - utworzyć funkcję, która nie wie jeszcze jaki dokładnie typ będzie logować na konsoli
-function logItOut<ITER> (something: ITER) {
+
+type AliasString = string;
+
+function logItOut<POMIDOR extends string> (something: POMIDOR) {
     console.log(something);
 }
 
@@ -70,7 +78,8 @@ function logItOut<ITER> (something: ITER) {
 logItOut('Hello !');
 // Lub ustalając dokładnie typ:
 logItOut<string>('Hello !');
-logItOut<number>(12012);
+logItOut<AliasString>('Hello !');
+// logItOut(12012);
 
 // Zapis ten nie ma zbyt dużo logiki i zasadności - przez co wygląda jakbyśmy mogli po prostu użyć `any`!
 
@@ -205,7 +214,7 @@ arrayToLog2.log();
 
 
 // Zadziała również obiekt, który dziedziczy po natywnym Array!
-class MyStringArray extends Array<string> {
+class MyStringArray extends Array<string>  {
     constructor(...names: string[]) {
         super();
         this.push(...names);
